@@ -1,10 +1,9 @@
-var averageGrade = 100;
-var name = 'John';
+var name = 'marcus';
 
-if (averageGrade === 100 || name === 'Jaren') {
-    console.log('You got a perfect grade!');
-} else if (averageGrade >= 70) {
-    console.log('You passed the class! Way to go!');
+if (name === 'jen' || name === 'mike') {
+    console.log('Hello friend');
+} else if (name === 'marcus') {
+    console.log('Hey');
 } else {
-    console.log('You failed the course. Sorry!');
+    console.log('Hello stranger');
 }
