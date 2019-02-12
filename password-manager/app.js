@@ -3,20 +3,35 @@ console.log('starting password maanger');
 var storage = require('node-persist'); // include 3rd party modules into your files
 storage.initSync();
 
-// storage.setItemSync('accounts', [{
- //   username: 'Jaren',
-//    balance: 0
-//}]);
+// account.name Facebook
+// account.username User12!
+// account.password Password123!
 
-var accounts = storage.getItemSync('accounts');
+function createAccount (account) {
+    var accounts = storage.getItemSync('accounts');
 
-// push on a new account
-// accounts.push({
-//     username: 'Joel',
-//     balance: 100
-// });
+    if (typeof accounts === 'undefined') {
+        accounts = [];
+    }
 
-// save using setItemSync
-// storage.setItemSync('accounts', accounts);
+    accounts.push(account);
+    storage.setItemSync('accounts', accounts);
 
-console.log(accounts);
+    return account;
+}
+
+function getAccount (accountName) {
+    var accounts = storage.getItemSync('accounts');
+    var matchedAccount;
+
+    accounts.forEach(function (account) {
+        if (account.name === accountName) {
+            matchedAccount = account;
+        }
+    });
+
+    return matchedAccount;
+}
+
+var facebookAccount = getAccount('Facebook');
+console.log(facebookAccount);
