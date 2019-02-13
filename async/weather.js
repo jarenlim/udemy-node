@@ -1,7 +1,14 @@
 var request = require('request');
-var url = 'https://api.openweathermap.org/data/2.5/weather?appid=64f5d09e58a3084b4649c2be2e10fca7&q=Singapore&units=metric';
 
-module.exports = function (callback) {    
+module.exports = function (location, callback) {    
+    var encodedLocation = encodeURIComponent(location);
+    var url = 'https://api.openweathermap.org/data/2.5/weather?appid=64f5d09e58a3084b4649c2be2e10fca7&q=' + encodedLocation + '&units=metric';
+
+    if (!location) {
+        return callback('No location provided');
+    }
+
+
     request({
         url: url, 
         json: true,
